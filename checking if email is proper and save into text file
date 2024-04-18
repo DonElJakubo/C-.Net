@@ -1,0 +1,145 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace FirstProject
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //-------------------------------------------------------------------Intro--------------------------------------------------------------------------------------
+
+            Console.WriteLine("C#/.Net Training");
+            try
+            {
+                Thread.Sleep(700);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+
+            Console.WriteLine();
+			
+            try
+            {
+                Thread.Sleep(700);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            Console.WriteLine("Here is everything that was in this solution made till now:");
+            try
+            {
+                Thread.Sleep(700);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            Console.WriteLine();
+            Console.WriteLine();
+			Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************");
+            Console.WriteLine();
+            Console.WriteLine("Regex:");
+            Console.WriteLine();
+
+
+            Regex poprawneMaileRegex = new Regex(@"^([a-z0-9]+)\.?([a-z0-9]+)@([a-z]+)\.com$");  //regex do sprawdzania poprawności emaili: 
+            string[] emailRegex = { "test.test2@gmail.com", ".test@gmail.com", "test.@gmial.com", "test231@.gmailcom", "test2@gamil.co," };
+
+            int r = 0;
+            Console.WriteLine("Check if email have propre format:");
+            while (r <= (emailRegex.Length - 1))
+            {
+                bool isMatch = poprawneMaileRegex.IsMatch(emailRegex[r]);
+                Console.WriteLine(emailRegex[r]);
+                Console.WriteLine(isMatch);
+                Console.WriteLine();
+                r++;
+            }
+            Console.WriteLine("Type your email:");
+
+            string readEmail = "";
+            bool isProperEmail = false;
+            string filePath = @""; //----- path to location where you want to save file with proper emails
+
+            while (!isProperEmail)
+            {
+                readEmail = Console.ReadLine();
+                isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
+
+                if (isProperEmail)
+                {
+                    Console.WriteLine("Proper Email");
+                    File.AppendAllText(filePath, readEmail + Environment.NewLine);
+                }
+                else
+                {
+                    Console.WriteLine("Not a proper email");
+                    Console.WriteLine("Try again:");
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************");
+            Console.WriteLine();
+
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            DateTime now = DateTime.Now;
+            Console.WriteLine("Time we got right now: " + now + " UTC+01:00");
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            DateTime whenBuild = new DateTime(2024, 4, 10, 13, 00, 00);
+            Console.WriteLine("Time when I started My trianing with C#/.Net: " + whenBuild + " UTC+01:00");
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            DateTime whenFinish = new DateTime(2024, 4, 15, 16, 00, 00);
+            Console.WriteLine("Time when I plan to end My trianing with C#/.Net: " + whenFinish + " UTC+01:00");
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+
+            Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************");
+            Console.WriteLine();
+
+        }
+    }
+}

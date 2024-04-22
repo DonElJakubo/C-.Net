@@ -1,0 +1,1057 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using ClassLibrary;
+using MultiplesOfFour;
+using ClassLibrary.NetTraining;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+
+namespace FirstProject
+{
+    class Program
+    {
+
+
+        //static void DisplayElements(List<int> list)
+        //{
+        //    Console.WriteLine("** List **");
+        //    foreach (int element in list)
+        //    {
+        //        Console.Write($"{element}, ");
+        //    }
+        //    Console.WriteLine();
+        //}
+
+
+        static List<Person> GetEmployee() // This is for lists
+        {
+            List<Person> employees = new List<Person>()
+            {
+                new Person(new DateTime(1990, 2, 12), "Adam", "Konwalowicz"),
+                new Person(new DateTime(1998, 3, 17), "Joanna", "Budzik"),
+                new Person(new DateTime(1996, 5, 22), "Tom", "Ford"),
+                new Person(new DateTime(1992, 2, 12), "Łukasz", "Milczyk"),
+                new Person(new DateTime(2005, 7, 12), "Krzysztof", "Krawczyk"),
+                new Person(new DateTime(1998, 12, 7), "Łucja", "Bednarek"),
+                new Person(new DateTime(2004, 2, 2), "Adam", "Walczyk"),
+                new Person(new DateTime(2003, 12, 22), "Przemysław", "Szyszka"),
+
+            };
+            return employees;
+        }
+
+
+        static Dictionary<string, Currencies> GetCurrencies()
+        {
+            return new Dictionary<string, Currencies>
+            {
+                { "pln", new Currencies("pln","Polish Zloty", 1) },
+                { "usd", new Currencies("usd", "United States, Dollar", 0.25) },
+                { "eur", new Currencies("eur", "Euro", 0.23) },
+                { "gbp", new Currencies("gbp", "British Pound", 0.20) },
+                { "cad", new Currencies("cad", "Canadian Dolar", 0.34) },
+                { "czk", new Currencies("czk", "Czech Korona", 5.84) },
+                { "mxn", new Currencies("mxn", "Mexican Peso", 4.25) },
+            };
+        }
+
+
+
+
+        //public static IEnumerable<int> GetData()
+        //{
+        //    var result = new List<int>();
+        //    for (int i = 0; i <= 10; i++)                         //intead of this we can use yield return
+        //    {
+        //        result.Add(i);
+        //    }
+        //    return result;
+        //}
+
+        //public static IEnumerable<int> GetYieldedData()
+        //{
+
+        //    for (int i = 0; i <= 10; i++)
+        //    {
+        //        yield return i;
+        //    }
+        //}
+
+
+        //static bool TryParseToNegative(string input, out int result)
+        //{
+        //    if (int.TryParse(input, out result))
+        //    {
+        //        if (result < 0)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        result = default;
+        //        return false;
+        //    }
+        //}
+
+        //public long Factorial(long input)
+        //{
+
+        //    if (input == 1)
+        //    {
+        //        return 1;
+        //    }
+
+        //    return input * Factorial(input - 1);
+
+        //}
+
+
+
+
+        public static void Main(string[] args)
+        {
+            //-------------------------------------------------------------------Intro--------------------------------------------------------------------------------------
+            Person checkpoint = new Person("", "");
+
+
+
+            Console.WriteLine("C#/.Net Training");
+            try
+            {
+                Thread.Sleep(700);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+
+            Console.WriteLine();
+
+            //Console.WriteLine("Before we start, could You tell me your name?");
+            //try
+            //{
+            //    Thread.Sleep(700);
+            //}
+            //catch (InterruptedException e)
+            //{
+            //    Console.WriteLine(e.ToString());
+            //};
+            //Console.WriteLine();
+            //string name = Console.ReadLine();
+
+            //Console.WriteLine();
+            //Console.WriteLine("How old are you?");
+            //try
+            //{
+            //    Thread.Sleep(700);
+            //}
+            //catch (InterruptedException e)
+            //{
+            //    Console.WriteLine(e.ToString());
+            //};
+            //Console.WriteLine();
+            //string age = Console.ReadLine();
+
+            //Console.WriteLine();
+
+            //string concated = string.Concat("From now your nick will be: ", name);
+            //try
+            //{
+            //    Thread.Sleep(700);
+            //}
+            //catch (InterruptedException e)
+            //{
+            //    Console.WriteLine(e.ToString());
+            //};
+            //Console.WriteLine(concated);
+            try
+            {
+                Thread.Sleep(700);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            Console.WriteLine("Here is everything that was in this solution made till now:");
+            try
+            {
+                Thread.Sleep(700);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //-------------------------------------------------------------End of the intro------------------------------------------------------------------------------ -
+
+            //checkpoint.codeCheckPoints();
+
+            //Console.WriteLine("Numbers:");
+            //Console.WriteLine();
+
+
+            //byte liczba = 255;
+            //Console.WriteLine("Your bite number is: " + liczba);
+
+            //float liczbaFloat = 234.9f;
+            //Console.WriteLine("Your float number is: " + liczbaFloat);
+
+            //decimal liczbaDecimal = 2132.554m;
+            //Console.WriteLine("Your decimal number is: " + liczbaDecimal);
+
+            //double liczbaDouble = 512.5532;
+            //Console.WriteLine("Your double number is: " + liczbaDouble);
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Strings and operations on strings:");
+            //Console.WriteLine();
+
+            //string message = null;
+            //Console.WriteLine("Null string result: " + message + "    <---- as you see it's empty");
+
+            //string windowsLocation = "c:\\windows";
+            //Console.WriteLine("Windows Location is: " + windowsLocation);
+
+            //string fontsFolder = @"c:\windows\something";
+            //Console.WriteLine("fonts folder is: " + fontsFolder);
+
+            //string text = "He said someethign";
+            //string concatenatedString = string.Concat(text, " to me");
+            //string interpolatedString = $"{text} to me";
+
+            //Console.WriteLine("interpolated String: " + interpolatedString);
+            //Console.WriteLine("concatenated String: " + concatenatedString);
+
+
+            //StringBuilder sb = new StringBuilder("This ");
+            //sb.Append("is ");
+            //sb.Append("a ");
+            //sb.Append("appended ");
+            //sb.Append("String");
+
+            //checkpoint.codeCheckPoints();
+
+            //Console.WriteLine("Count functions:");
+            //Console.WriteLine();
+
+            //string result = sb.ToString();
+            //Console.WriteLine(result);
+
+
+            //int resultObliczen;
+            //int x = 10, y = 5;
+
+            //resultObliczen = (x + y);
+            //Console.WriteLine($"result {x} + {y} = " + resultObliczen);
+            //resultObliczen = (x - y);
+            //Console.WriteLine($"result {x} - {y} = " + resultObliczen);
+            //resultObliczen = (x * y);
+            //Console.WriteLine($"result {x} * {y} = " + resultObliczen);
+            //resultObliczen = (x / y);
+            //Console.WriteLine($"result {x} / {y} = " + resultObliczen);
+            //resultObliczen = (x % y);
+            //Console.WriteLine($"result modulo {x} % {y} = " + resultObliczen);
+            //int valueObliczen = 2 + 2 * 5;
+            //Console.WriteLine($"result 2 + 2 * 5 = " + valueObliczen);
+            //int valueObliczen2 = (2 + 2) * 5;
+            //Console.WriteLine($"result (2 + 2) * 5 = " + valueObliczen2);
+            //Console.WriteLine("result x (with post-increment ++) = " + x++);
+            //Console.WriteLine("result post-increment x++ (another print statement) = " + x);
+            //Console.WriteLine("result pre-increment x-- = " + --x);
+
+            //checkpoint.codeCheckPoints();
+
+            //Console.WriteLine("Bool operators:");
+            //Console.WriteLine();
+
+
+
+            //bool boolResult;
+            //Console.WriteLine($"x = {x} and y = {y}");
+
+            //boolResult = (x == y);
+            //Console.WriteLine("check if x==y: " + boolResult);
+            //boolResult = (x > y);
+            //Console.WriteLine("check if x > y: " + boolResult);
+            //boolResult = (x < y);
+            //Console.WriteLine("check if x < y: " + boolResult);
+            //boolResult = (x != y);
+            //Console.WriteLine("check if x != y: " + boolResult);
+
+
+            //bool a = true;
+            //bool b = true;
+
+            //boolResult = a && b;
+            //Console.WriteLine("AND operator: a && b = " + boolResult);
+
+            //boolResult = a || b;
+            //Console.WriteLine("AND operator: a || b = " + boolResult);
+
+            //boolResult = !a;
+            //Console.WriteLine("AND operator: !a = " + boolResult);
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Ternary operator:");
+            //Console.WriteLine();
+
+            //x = 5;
+            //y = 10;
+
+            //int greaterNumber = x > y ? x : y;
+            //Console.WriteLine($"x = {x} \ny = {y}");
+            //Console.WriteLine("Ternary conditional operator: x > y ? x : y = " + greaterNumber);
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("If-Else statements:");
+            //Console.WriteLine();
+
+
+
+
+            //string canBetNot = "can't bet";
+            //string canBet = "can bet";
+            //string respond1 = " because he is over 18";
+            //string respond2 = " because he isn't over 18";
+            //string nick = name;
+            //Console.WriteLine("user age is: " + age);
+            //int age1;
+            //int.TryParse(age, out age1); // zmiana z stringu na int (vartość string age na int age1)
+            //if (age1 >= 18)
+            //{
+            //    Console.WriteLine($"User with nick: {nick}" + " " + canBet + respond1);
+
+            //    Console.WriteLine("He is: " + age);
+            //    if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            //    {
+            //        Console.WriteLine("you can't bet today because today is sunday");
+            //    }
+            //    else if (DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+            //    {
+            //        Console.WriteLine("You can bet today, because today is not sunday but: " + DateTime.Now.DayOfWeek);
+            //    }
+            //}
+
+            //if (age1 < 18)
+            //{
+            //    Console.WriteLine($"User with nick: {nick}" + " " + canBetNot + respond2);
+
+            //    Console.WriteLine("He is: " + age);
+            //    if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            //    {
+            //        Console.WriteLine("Anyway you can't bet today because today is sunday");
+            //    }
+            //    else if (DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+            //    {
+            //        Console.WriteLine("You could bet today, because today is not sunday but: " + DateTime.Now.DayOfWeek + " \nBut still you are too young to bet");
+            //        Console.WriteLine("You have to wait till you will be over 18, bye");
+            //    }
+            //}
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Switch Case function:");
+            //Console.WriteLine();
+
+
+
+            //switch (DateTime.Now.DayOfWeek)
+            //{
+
+            //    case DayOfWeek.Monday:
+            //        Console.WriteLine("It's " + DayOfWeek.Monday + " (work day)");
+            //        break;
+            //    case DayOfWeek.Tuesday:
+            //        Console.WriteLine("It's " + DayOfWeek.Tuesday + " (work day)");
+            //        break;
+            //    case DayOfWeek.Wednesday:
+            //        Console.WriteLine("It's " + DayOfWeek.Wednesday + " (work day)");
+            //        break;
+            //    case DayOfWeek.Thursday:
+            //        Console.WriteLine("It's " + DayOfWeek.Thursday + " (work day)");
+            //        break;
+            //    case DayOfWeek.Friday:
+            //        Console.WriteLine("It's " + DayOfWeek.Friday + " (work day)");
+            //        break;
+            //    case DayOfWeek.Saturday:
+            //        Console.WriteLine("It's " + DayOfWeek.Saturday + " (weekend)");
+            //        break;
+            //    case DayOfWeek.Sunday:
+            //        Console.WriteLine("It's " + DayOfWeek.Sunday + " (weekend)");
+            //        break;
+            //}
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Type conversion and casting :");
+            //Console.WriteLine();
+
+
+
+
+            //Console.WriteLine("Type your year of birth:");
+            //string input = Console.ReadLine();
+            //if (DateTime.TryParseExact(input, "yyyy", null, DateTimeStyles.None, out DateTime dateOfBirth)) // this one is more safe option
+            //{
+            //    Console.WriteLine($"Year of birth: {dateOfBirth.Year}");
+            //    int howOld = DateTime.Now.Year - dateOfBirth.Year;
+            //    Console.WriteLine($"You are {howOld} years old");
+            //    if (howOld >= 35)
+            //    {
+            //        Console.WriteLine("You can start candidate on President possition");
+            //    }
+            //    else if (howOld >= 18)
+            //    {
+            //        Console.WriteLine("You can't candidate, but you can vote");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("You can't vote");
+            //    }
+            //    Console.WriteLine("another possible ask for date:");
+            //    Console.WriteLine("confirm year of birth:");
+            //    string checkDateInput = Console.ReadLine();
+            //    int checkYear = int.Parse(checkDateInput); // this one is less safe option
+            //    int age22 = DateTime.Now.Year - checkYear;
+            //    if (howOld == age22)
+            //    {
+            //        Console.WriteLine($"confirmed age: {age22} years old");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("You made mistake, dates are not the same");
+            //        Console.WriteLine("Try again");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Incorrect value");
+            //}
+
+
+            //// type casting:
+            //byte byteValue = 100;
+            //int intValue = byteValue;
+            //byte byteValue2 = (byte)intValue;
+            //double doubleValue = 3.5;
+            //int intValue2 = (int)doubleValue;
+
+            //string stringValue = intValue2.ToString();
+
+
+
+            //Console.WriteLine();
+            //Console.WriteLine();
+
+            //Console.WriteLine("Kalkulator BMI");
+            //Console.WriteLine();
+            //Console.WriteLine("Podaj swoją wagę (kg):");
+            //string massString = Console.ReadLine();
+            //double massBmi = double.Parse(massString);
+
+            //Console.WriteLine("Podaj swój wzrost (cm):");
+            //string heightString = Console.ReadLine();
+            //double heightBmi = double.Parse(heightString) / 100; // Convert centimeters to meters
+
+            //string BMIresult = "niedowaga";
+            //string BMIresult2 = "waga prawidłowa";
+            //string BMIresult3 = "nadwaga";
+            //double bmi = massBmi / (heightBmi * heightBmi);
+            //Console.WriteLine($"Twoje BMI to: {bmi}");
+
+            //if (bmi < 18.5)
+            //{
+            //    Console.WriteLine($"Wynik: {BMIresult}");
+            //}
+            //else if (bmi >= 18.5 && bmi < 25)
+            //{
+            //    Console.WriteLine($"Wynik: {BMIresult2}");
+            //}
+            //else if (bmi >= 25 && bmi < 30)
+            //{
+            //    Console.WriteLine($"Wynik: {BMIresult3}");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Otyłość");
+            //}
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Arrays:");
+            //Console.WriteLine();
+
+
+            ////sample array which will be used in next solutions
+            //string[] cars = { "Porsche", "Audi", "Volvo", "Mazda", "Tesla", "BMW", "Toyota", "Nissan", "Honda", "Hyundai" };
+            //Console.WriteLine("first one is: " + cars[0]);
+            //int arrayLength = cars.Length;
+
+            //Console.WriteLine("last one is: " + cars[cars.Length - 1]);
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Loops While:");
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("Print all cars companies:");
+            //Console.WriteLine();
+            //int j = 0;
+            //while (j <= (cars.Length - 1))
+            //{
+            //    Console.WriteLine(cars[j]);
+
+            //    j++;
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine("Find BMW and then end loop:");
+            //Console.WriteLine();
+            //int i = 0;
+            //while (i <= (cars.Length - 1))
+            //{
+            //    Console.WriteLine(cars[i]);
+            //    if (cars[i] == "BMW")
+            //    {
+
+            //        Console.WriteLine();
+            //        Console.WriteLine($"I found BMW \nBye");
+            //        break;
+            //    }
+            //    i++;
+            //}
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Loops Do-While:");
+            //Console.WriteLine();
+
+
+
+            //Console.WriteLine("To exit, type 'x' ");
+            //string userInputDoWhile;
+            //do
+            //{
+            //    userInputDoWhile = Console.ReadLine();
+            //    Console.WriteLine($"Echo: {userInputDoWhile}");
+            //}
+            //while (userInputDoWhile != "x");
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Loops For:");
+            //Console.WriteLine();
+
+
+            //for (int k = 0; k < cars.Length; k++)
+            //{
+            //    Console.WriteLine(cars[k]);
+            //    if (cars[k] == "BMW")
+            //    {
+
+            //        Console.WriteLine();
+            //        Console.WriteLine($"I found BMW \nBye");
+            //        break;
+            //    }
+
+            //}
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Loops Foreach:");
+            //Console.WriteLine();
+
+            //foreach (string car in cars)
+            //{
+            //    Console.WriteLine($"{car}");
+            //    if (car == "BMW")
+            //    {
+            //        Console.WriteLine("Bye");
+            //        break;
+            //    }
+            //}
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Task with iterating user input:");
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("Insert numbers to sum:");
+            //Console.WriteLine("type '0' to exit");
+            //int userInputZadanie = int.Parse(Console.ReadLine());
+            //int sum = 0;
+            //int? maxValueZadanie = null;
+            //while (userInputZadanie != 0)
+            //{
+            //    if (maxValueZadanie == null || userInputZadanie > maxValueZadanie)
+            //    {
+            //        maxValueZadanie = userInputZadanie;
+            //    }
+
+            //    sum += userInputZadanie;
+            //    userInputZadanie = int.Parse(Console.ReadLine());
+            //}
+            //if (maxValueZadanie.HasValue)
+            //{
+            //    Console.WriteLine($"Sum of numbers = {sum}");
+            //    Console.WriteLine($"Max value = {maxValueZadanie}");
+
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No values inserted");
+            //}
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Enums:");
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("What is your gender? 1 - Male 2 - Female");
+            //string userInputGender = Console.ReadLine();
+            //Gender userGender = (Gender)Enum.Parse(typeof(Gender), userInputGender);
+
+            //if (userGender == Gender.Male)
+            //{
+            //    Console.WriteLine("Only women are allowed");
+            //}
+            //else
+            //{
+
+            //    Console.WriteLine($"Welcome");
+            //}
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Nullable:");
+            //Console.WriteLine();
+
+
+            //Nullable<int> favouriteNumber = null;
+
+            //Console.WriteLine("Fav number: " + (favouriteNumber.HasValue ? favouriteNumber.Value.ToString() : ""));
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Try-Catch:");
+            //Console.WriteLine();
+
+
+            //try
+            //{
+            //    Console.WriteLine("Inside try - 1");
+            //    cars[4] = "Tesla";
+            //    Console.WriteLine("Inside try - 2");
+            //}
+            //catch (IndexOutOfRangeException ex)
+            //{
+            //    Console.WriteLine("Handling IndexOutOfRangeExecpiton exeption");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Handling any exeption");
+            //}
+            //finally
+            //{
+            //    Console.WriteLine("Cleanup");
+            //}
+            //Console.WriteLine("Outisde of try-catch");
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("HowManyDaysYouLive task:");
+            //Console.WriteLine();
+
+
+
+            //Console.WriteLine("Insert the date of birth (dd.MM.yyy)");
+            //string dateOfBitrhTask = Console.ReadLine();
+            //DateTime dateOfBirthDate = DateTime.Parse(dateOfBitrhTask);
+            //TimeSpan dateOfBirthTimeSpan = DateTime.Now - dateOfBirthDate;
+
+            //Console.WriteLine($"You were born: {Math.Floor(dateOfBirthTimeSpan.TotalDays)}");
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Regex:");
+            //Console.WriteLine();
+
+
+            //Regex poprawneMaileRegex = new Regex(@"^([a-z0-9]+)\.?([a-z0-9]+)@([a-z]+)\.com$");  //regex do sprawdzania poprawności emaili: 
+            //string[] emailRegex = { "test.test2@gmail.com", ".test@gmail.com", "test.@gmial.com", "test231@.gmailcom", "test2@gamil.co," };
+
+            //int r = 0;
+            //Console.WriteLine("Check if email have propre format:");
+            //while (r <= (emailRegex.Length - 1))
+            //{
+            //    bool isMatch = poprawneMaileRegex.IsMatch(emailRegex[r]);
+            //    Console.WriteLine(emailRegex[r]);
+            //    Console.WriteLine(isMatch);
+            //    Console.WriteLine();
+            //    r++;
+            //}
+            //Console.WriteLine("Type your email:");
+
+            //string readEmail = "";
+            //bool isProperEmail = false;
+            //string filePath = @"C:\Users\jguth1\testemail\proper_emails.txt";
+
+            //while (!isProperEmail)
+            //{
+            //    readEmail = Console.ReadLine();
+            //    isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
+
+            //    if (isProperEmail)
+            //    {
+            //        Console.WriteLine("Proper Email");
+            //        using (StreamWriter writer = new StreamWriter(filePath, true))
+            //        {
+            //            writer.WriteLine(readEmail);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Not a proper email");
+            //        Console.WriteLine("Try again:");
+            //    }
+            //}
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Metods and constructors:");
+            //Console.WriteLine();
+
+
+
+            //Person person = new Person("Mark", "Martinez");
+
+            //person.SetDateOfBirth(new DateTime(1998, 02, 11));
+            ////person.SayHi();
+
+            ////Person person1 = new Person(new(1990, 12, 21), "Jakub", "Jakiś");
+            ////person1.SayHi();
+            //person.ContactNumber = "5553443123";
+            //Console.WriteLine($"contact number: {person.ContactNumber} \nFor person: {person.Name} {person.LastName}");
+
+            //Console.WriteLine($"Objects of Person type count: {Person.Count}");
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Dziedziczenie:");
+            //Console.WriteLine();
+
+
+
+
+            //ExcelFile excelFile = new ExcelFile();
+
+            //excelFile.CreatedOn = DateTime.Now;
+            //excelFile.FileName = "Excel_File";
+
+            //excelFile.GenerateReport();
+
+
+            //WorldDocumentFile worldDocumentFile = new WorldDocumentFile();
+
+            //worldDocumentFile.CreatedOn = DateTime.Now;
+            //worldDocumentFile.FileName = "World_File";
+
+            //worldDocumentFile.Print();
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Polimorfizm:");
+            //Console.WriteLine();
+
+
+
+            //Shape[] shapes = { new Circle(), new Rectengle(), new Triangle() };
+            //foreach (Shape shape in shapes)
+            //{
+            //    shape.Draw();
+
+            //}
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Collections:");
+            //Console.WriteLine("List and it's functionality:");
+            //Console.WriteLine();
+
+
+            //int[] intArray = { 111, 4, 53, 64, 10 };
+            //int arrayLength2 = intArray.Length;
+
+
+            //List<int> intList = new List<int>() { 6, 1, 20, 3, 45, 60, 100, 2 };
+
+            //DisplayElements(intList);
+            //Console.WriteLine("Add new element to the list:");
+            //string listUserInput = Console.ReadLine();
+            //int listIntValue = int.Parse(listUserInput);
+            //intList.Add(listIntValue);
+            //DisplayElements(intList);
+
+            //Console.WriteLine("Remove range");
+            //intList.RemoveRange(1, 2);
+            //DisplayElements(intList);
+
+            //Console.WriteLine("Sort");
+            //intList.Sort();
+            //DisplayElements(intList);
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("LINQ and Lmabda Expression:");
+            //Console.WriteLine();
+
+            //List<Person> employees = GetEmployee();
+
+            //////List<Person> youngEmployees = new List<Person>();
+            //////foreach (Person employee in employees)
+            //////{
+            //////    if (employee.GetDateOfBirth() > new DateTime(2000,1,1))             //instead of this code we can use LINQ
+            //////    {
+            //////        youngEmployees.Add(employee);
+            //////    }
+            //////}
+            //////Console.WriteLine($"Young emoployees count: {youngEmployees.Count}");
+
+
+            ////bool EmployeeIsYoung (Person emplooyee)
+            ////{
+            ////    return emplooyee.GetDateOfBirth() > new DateTime(2000, 1, 1                       // instead of this we can use lambda
+            ////}
+
+
+            ////List<Person> youngEmployees = employees.Where(EmployeeIsYoung).ToList();              // instead of this we can use lambda
+            //List<Person> youngEmployees = employees.Where(e => e.GetDateOfBirth() > new DateTime(2000, 1, 1)).ToList();
+
+
+            //////Person adam = null;
+
+            //////foreach (Person youngEmployee in youngEmployees)
+            //////{
+            //////    if (youngEmployee.Name == "Adam")                                   //instead of this we can use LINQ again
+            //////    {
+            //////        adam = youngEmployee;
+            //////        break;
+            //////    }
+            //////}
+
+            ////bool EmployeeIsAdam(Person emplooyee)
+            ////{
+            ////    return emplooyee.Name == "Adam";                                                  // instead of this we can use lambda
+            ////}
+
+            ////Person adam = youngEmployees.FirstOrDefault(EmployeeIsAdam);                          // instead of this we can use lambda
+            //Person adam = youngEmployees.FirstOrDefault(e => e.Name == "Adam");
+
+            //if (adam != null)
+            //{
+            //    adam.SayHi();
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Young Employee Adam not found");
+            //}
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Dictionary:");
+            //Console.WriteLine();
+
+
+
+            //Dictionary<string, Currencies> currencies = GetCurrencies();
+            //Console.WriteLine("You can check rate for currencies: usd, eur, gbp, cad, czk, mxn to pln currency");
+            //Console.WriteLine($"Check rate for: ");
+            //string currencyUserInput = Console.ReadLine();
+
+            //Currencies selectedCurrency = null;
+            //if (currencies.TryGetValue(currencyUserInput, out selectedCurrency))
+            //{
+            //    Console.WriteLine($"Rate for PLN to {selectedCurrency.FullName} is {selectedCurrency.Rate}");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Currency not found");
+            //}
+            //currencies.Remove("mxn"); //removing currency
+            //currencies.TryAdd("mxn", new Currencies("mxn", "Mexican Peso", 4.25)); //adding currency
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Yield:");
+            //Console.WriteLine();
+
+
+
+            //var yeldedData = GetYieldedData();
+            //foreach (int element in yeldedData)
+            //{
+            //    Console.WriteLine(element);
+            //}
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("ref and out:");
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("Checking parsing negative value \nType value:");
+            //int inputNegativeValue;
+
+            //while (!TryParseToNegative(Console.ReadLine(), out inputNegativeValue))
+            //{
+            //    Console.WriteLine("Insert negative number:");
+            //}
+            //Console.WriteLine($"Inserted negative number = {inputNegativeValue}");
+
+
+
+
+            checkpoint.codeCheckPoints();
+            Console.WriteLine("Opis:");
+            Console.WriteLine();
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Opis:");
+            //Console.WriteLine();
+
+
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Opis:");
+            //Console.WriteLine();
+
+
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Opis:");
+            //Console.WriteLine();
+
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Opis:");
+            //Console.WriteLine();
+
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Opis:");
+            //Console.WriteLine();
+
+
+
+
+
+
+            //checkpoint.codeCheckPoints();
+            //Console.WriteLine("Opis:");
+            //Console.WriteLine();
+
+
+            //-------------------------------------------------------------Datas (from start to end) describtion -----------------------------------------------------------
+
+            Console.WriteLine();
+            checkpoint.codeCheckPoints();
+            
+
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            DateTime now = DateTime.Now;
+            Console.WriteLine("Time we got right now: " + now + " UTC+01:00");
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            DateTime whenBuild = new DateTime(2024, 4, 10, 13, 00, 00);
+            Console.WriteLine("Time when I started My trianing with C#/.Net: " + whenBuild + " UTC+01:00");
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+            DateTime whenFinish = new DateTime(2024, 4, 15, 16, 00, 00);
+            Console.WriteLine("Time when I plan to end My trianing with C#/.Net: " + whenFinish + " UTC+01:00");
+            try
+            {
+                Thread.Sleep(500);
+            }
+            catch (InterruptedException e)
+            {
+                Console.WriteLine(e.ToString());
+            };
+
+            checkpoint.codeCheckPoints();
+
+        }
+    }
+}

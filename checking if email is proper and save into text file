@@ -74,22 +74,26 @@ namespace FirstProject
             bool isProperEmail = false;
             string filePath = @""; //----- path to location where you want to save file with proper emails
 
-            while (!isProperEmail)
-            {
-                readEmail = Console.ReadLine();
-                isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
 
-                if (isProperEmail)
-                {
-                    Console.WriteLine("Proper Email");
-                    File.AppendAllText(filePath, readEmail + Environment.NewLine);
-                }
-                else
-                {
-                    Console.WriteLine("Not a proper email");
-                    Console.WriteLine("Try again:");
-                }
-            }
+	    while (!isProperEmail)
+	    {
+	    readEmail = Console.ReadLine();
+	    isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
+
+	    if (isProperEmail)
+	    {
+	        Console.WriteLine("Proper Email");
+	        using (StreamWriter writer = new StreamWriter(filePath, true))
+	        {
+	            writer.WriteLine(readEmail);
+	        }
+	    }
+	    else
+	    {
+        	   Console.WriteLine("Not a proper email");
+        	   Console.WriteLine("Try again:");
+	        }
+	    }
 
             Console.WriteLine();
             Console.WriteLine();

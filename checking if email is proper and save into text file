@@ -8,11 +8,30 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using ClassLibrary;
+using MultiplesOfFour;
+using ClassLibrary.NetTraining;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+
 
 namespace FirstProject
 {
     class Program
     {
+
+
+
+        public void codeCheckPoints() 
+        {
+            Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************");
+            Console.WriteLine();
+
+        }
+
+
+
         static void Main(string[] args)
         {
             //-------------------------------------------------------------------Intro--------------------------------------------------------------------------------------
@@ -46,60 +65,117 @@ namespace FirstProject
             {
                 Console.WriteLine(e.ToString());
             };
-            Console.WriteLine();
-            Console.WriteLine();
-			Console.WriteLine();
-            Console.WriteLine("************************************************************************************************************************");
-            Console.WriteLine();
-            Console.WriteLine("Regex:");
-            Console.WriteLine();
+ 
+ checkpoint.codeCheckPoints();
 
+ Regex poprawneMaileRegex = new Regex(@"^([a-z0-9]+)\.?([a-z0-9]+)@([a-z]+)\.com$");  //regex do sprawdzania poprawności emaili: 
+ string[] emailRegex = { "test.test2@gmail.com", ".test@gmail.com", "test.@gmial.com", "test231@.gmailcom", "test2@gamil.co," };
 
-            Regex poprawneMaileRegex = new Regex(@"^([a-z0-9]+)\.?([a-z0-9]+)@([a-z]+)\.com$");  //regex do sprawdzania poprawności emaili: 
-            string[] emailRegex = { "test.test2@gmail.com", ".test@gmail.com", "test.@gmial.com", "test231@.gmailcom", "test2@gamil.co," };
+ int r = 0;
 
-            int r = 0;
-            Console.WriteLine("Check if email have propre format:");
-            while (r <= (emailRegex.Length - 1))
-            {
-                bool isMatch = poprawneMaileRegex.IsMatch(emailRegex[r]);
-                Console.WriteLine(emailRegex[r]);
-                Console.WriteLine(isMatch);
-                Console.WriteLine();
-                r++;
-            }
-            Console.WriteLine("Type your email:");
+ checkpoint.codeCheckPoints();
+ string readEmail = "";
+ bool isProperEmail = false;
+ string filePath = @"C:\Users\jguth1\testemail\proper_emails.txt";
 
-            string readEmail = "";
-            bool isProperEmail = false;
-            string filePath = @""; //----- path to location where you want to save file with proper emails
+ Console.WriteLine("If you want to read all emails from document type 1 \nIf you want to add new email type 2 \nTo end press 0:");
 
+ while (true)
+ {
+     int emailChoices = int.Parse(Console.ReadLine());
+     if (emailChoices == 1)
+     {
+         Console.WriteLine("All emails in document:");
+         using (StreamReader documentReader = new StreamReader(filePath))
+         {
+             Console.WriteLine($"{documentReader.ReadToEnd()}");
+             checkpoint.codeCheckPoints();
+             Console.WriteLine("If you want to read all emails from document type 1 \nIf you want to add new email type 2 \nTo end press 0:");
 
-	    while (!isProperEmail)
-	    {
-	    readEmail = Console.ReadLine();
-	    isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
+         }
+     }
 
-	    if (isProperEmail)
-	    {
-	        Console.WriteLine("Proper Email");
-	        using (StreamWriter writer = new StreamWriter(filePath, true))
-	        {
-	            writer.WriteLine(readEmail);
-	        }
-	    }
-	    else
-	    {
-        	   Console.WriteLine("Not a proper email");
-        	   Console.WriteLine("Try again:");
-	        }
-	    }
+     else if (emailChoices == 2)
+     {
+         while (!isProperEmail)
+
+         {
+             Console.WriteLine("Type your email:");
+             readEmail = Console.ReadLine();
+             isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
+
+             if (isProperEmail)
+             {
+                 Console.WriteLine("Proper Email");
+                 Console.WriteLine($"Email: {readEmail} has been added to file");
+                 using (StreamWriter writer = new StreamWriter(filePath, true))
+                 {
+                     writer.WriteLine(readEmail);
+                     checkpoint.codeCheckPoints();
+                     Console.WriteLine("If you want to read all emails from document type 1 \nIf you want to add new email type 2 \nTo end press 0:");
+                 }
+                 checkpoint.codeCheckPoints();
+             }
+             else
+             {
+                 Console.WriteLine("Not a proper email");
+                 Console.WriteLine("If you want to try again add your email type 1 \nTo end press 0:");
+                 int exitChoice = int.Parse(Console.ReadLine());
+                 if (exitChoice == 0)
+                 {
+                     checkpoint.codeCheckPoints();
+                     Console.WriteLine("If you want to read all emails from document type 1 \nIf you want to add new email type 2 \nTo end press 0:");
+                     break;
+                 }
+                 else if ((exitChoice == 1))
+                 {
+                     Console.WriteLine("Type your email:");
+                     readEmail = Console.ReadLine();
+                     isProperEmail = poprawneMaileRegex.IsMatch(readEmail);
+
+                     if (isProperEmail)
+                     {
+                         Console.WriteLine("Proper Email");
+                         Console.WriteLine($"Email: {readEmail} has been added to file");
+                         using (StreamWriter writer = new StreamWriter(filePath, true))
+                         {
+                             writer.WriteLine(readEmail);
+                             checkpoint.codeCheckPoints();
+                             Console.WriteLine("If you want to read all emails from document type 1 \nIf you want to add new email type 2 \nTo end press 0:");
+                         }
+                         checkpoint.codeCheckPoints();
+                     }
+                     else
+                     {
+                         Console.WriteLine("You write email wrong again. I'm sorry but I can't give you more tries. Bye");
+                         checkpoint.codeCheckPoints();
+                         break;
+                     }
+                 } 
+             } 
+         }
+     }
+     else if (emailChoices == 0)
+     {
+         Console.WriteLine("You chose to exit.");
+         checkpoint.codeCheckPoints();
+         break;
+     }
+     else
+     {
+         Console.WriteLine("Wrong choice, try again:");
+         checkpoint.codeCheckPoints();
+         Console.WriteLine("If you want to read all emails from document type 1 \nIf you want to add new email type 2 \nTo end press 0:");
+         continue;
+
+     }
+ }
+
+            //-------------------------------------------------------------Datas (from start to end) describtion -----------------------------------------------------------
 
             Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("************************************************************************************************************************");
-            Console.WriteLine();
+            checkpoint.codeCheckPoints();
+            
 
             try
             {
@@ -140,9 +216,7 @@ namespace FirstProject
                 Console.WriteLine(e.ToString());
             };
 
-            Console.WriteLine();
-            Console.WriteLine("************************************************************************************************************************");
-            Console.WriteLine();
+            checkpoint.codeCheckPoints();
 
         }
     }
